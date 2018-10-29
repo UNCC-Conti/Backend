@@ -182,14 +182,14 @@ router.post('/interest', authenticateEmployee, function (req, res) {
 	})
 })
 
-router.post('/toDo', authenticateHR, function (req, res) {
+router.post('/task', authenticateHR, function (req, res) {
 
 	var d = new Date()
 	console.log('' + d + '\tExecuting API : Create a todo task')
     Log.updateLog(req.employee._id,'Creating a new todo.')
 
-	var body = _.pick(req.body, ['description', 'rewardPoints', 'priority', 'duration',
-								'title', 'type', 'location', 'department','division'])
+	var body = _.pick(req.body, ['description', 'rewardPoints', 'priority', 'duration', 'url',
+								'color', 'category', 'title', 'type', 'location', 'department','division'])
 
 	var toDo = new Task(body)
 	console.log("we come here 0")

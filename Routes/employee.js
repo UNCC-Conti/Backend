@@ -110,6 +110,60 @@ router.get('/assignedQuizzes', authenticateEmployee, function (req, res) {
 	})
 })
 
+router.get('/assignedTasks', authenticateEmployee, function (req, res) {
+
+	var d = new Date()
+	console.log("" + d + "\tExecuting API: List assigned quiz")
+    var id = req.employee._id
+
+    Employee.find({"_id":id}, {tasks:1, _id:0}).then((tasks) => {
+
+		Log.updateLog(id, "Viewing the assigned quizzes")
+		res.status(200).send({"tasks":tasks});
+    }, (e) => {
+		res.status(400).send({'status': 'Error getting all the Tasks for the employee', 'Error': e})
+	})
+})
+
+router.get('/viewTask',authenticateEmployee,function(req,res){
+
+	var taskId = req.header('taskId');
+
+
+	Employee.find({"_id":req.employee._id, "tasks._id": taskId },function(err,employee){
+        
+        if(!employee){
+			res.status(400).send(err); 
+		}
+        else{
+
+			if(employee.length > 0){
+				// console.log(employee[0].quizzes)
+				var response = [];
+				for(var i = 0; i < employee[0].tasks.length;i++){
+
+					if(employee[0].tasks[i]._id == taskId){
+						
+
+						console.log("Responses are : " + employee[0].tasks[i])
+						Log.updateLog(req.employee._id, "Viewing a particular quiz with id " + taskId)
+						res.status(200).send({"task":employee[0].tasks[i]});
+						break;
+					}
+				}
+				
+			}else{
+				res.status(400).send({"error" : "Could not find any employee"}); 
+			}
+			
+        }
+
+	}).catch((e)=>{
+		res.send({"Error":"Error while doing stuff"});
+
+	});
+});
+
 router.get('/quizOutcome', authenticateEmployee, function (req, res) {
 
 	var d = new Date()
@@ -239,6 +293,40 @@ router.put('/submitQuiz', authenticateEmployee, function (req, res) {
     }, (e) => {
 		res.status(400).send({'status': 'Error submitting the quizz for the employee', 'Error': e})
 	})
+});
+
+router.put('/submitTask', authenticateEmployee, function (req, res) {
+
+	var d = new Date(); 
+	console.log("" + d + "\tExecuting API : Updating Quiz Status");
+
+	var taskId = req.body.taskId;
+	var message = req.body.message;
+	var response = req.body.response;
+	var isComplete = req.body.isComplete;
+
+	if(isComplete){
+		Employee.updateOne({"_id":req.employee._id,"tasks._id":taskId},
+		{ "$set": { "tasks.$.task.message": message,"tasks.$.task.response":response, 
+					"tasks.$.task.isComplete": isComplete, "tasks.$.status" : "Complete"}},
+			
+			function(err, model) {
+				if(err){ res.status(400).send(err); }
+				else{
+					Log.updateLog(req.employee._id, "Submitted the Quiz status for : " + taskId)
+					var body = {
+						"status" : "Successfully Completed The Task",
+					}
+					res.status(200).send(body);
+				}
+	
+		}, (e) => {
+			res.status(400).send({'status': 'Error submitting the quizz for the employee', 'Error': e})
+		})
+	}else{
+		res.status(400).send({"status": "Task is not ready to complete."});
+	}
+
 });
 
 

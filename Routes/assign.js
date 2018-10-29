@@ -34,12 +34,12 @@ router.put('/addInterest', authenticateEmployee, function(req,res){
 
 })
 
-router.put('/toDo', authenticateHR, function (req, res) {
+router.put('/task', authenticateHR, function (req, res) {
 
 	var d = new Date(); 
 	console.log("" + d + "\tExecuting API : Assign todo task");
 
-	var _id = req.body.employeeId;
+	var _id = req.employee._id;
 	var taskId = req.body.taskId;
 
 	Task.findById(taskId, function (err, task) {
@@ -54,8 +54,8 @@ router.put('/toDo', authenticateHR, function (req, res) {
 				//                "taskId":todoId,
 				"status": "open",
 				"startDate": new Date(req.body.startDate),
-				"dueDate": new Date(req.body.dueDate)
-
+				"dueDate": new Date(req.body.dueDate),
+				"endDate": new Date(req.body.endDate) || new Date(req.body.dueDate)
 			};
 
 			//console.log(body);
