@@ -150,41 +150,7 @@ var EmployeeSchema = new mongoose.Schema({
     },  
 
     tasks : [{
-
-        task : {
-            type : Object,
-            required : true
-        },
-
-        status : {
-            type : String,
-            required : true,
-            minlength : 1,
-            trim : true
-        }, 
-        startDate : {
-            type : String,
-            required : true,
-            minlength : 1,
-            trim : true
-        },
-        dueDate : {
-            type : String,
-            required : true,
-            minlength : 1,
-            trim : true
-        },
-		completedDate : {
-            type : String,
-            minlength : 1,
-            trim : true
-        },
-		reviewDate : {
-            type : String,
-            minlength : 1,
-            trim : true
-        }
-
+        type : Object
     }],
     quizzes : [{
 
