@@ -307,7 +307,24 @@ router.put('/submitTask', authenticateEmployee, function (req, res) {
 	var inputs = req.body.inputs
 
 	if(isComplete || true){
-		Employee.updateOne({"_id":req.employee._id,"tasks.$._id":taskId},
+
+		// Employee.findOne({"_id":req.employee._id}).then((employee) =>{
+
+		// 	for(var i = 0; i < employee.tasks.length; i++){
+		// 		if(employee.tasks[i]._id == req.body._id){
+		// 			employee.task[i] = req.body
+
+		// 			Employee.update(employee)
+		// 		}
+		// 	}
+		// }, (e) => {
+
+		// })
+
+
+
+
+		Employee.updateOne({"_id":req.employee._id,"tasks._id":taskId},
 		{ "$set": { "tasks.$.status" : "Complete", "tasks.$.color" : "#989898"}},
 			
 			function(err, model) {
