@@ -313,7 +313,7 @@ router.put('/submitTask', authenticateEmployee, function (req, res) {
 			function(err, model) {
 				if(err){ res.status(400).send(err); }
 				else{
-					console.log("Model is : " + model)
+					console.log("Model is : " + JSON.stringify(model))
 					Log.updateLog(req.employee._id, "Submitted the Quiz status for : " + taskId)
 					var body = {
 						"status" : "Successfully Completed The Task",
