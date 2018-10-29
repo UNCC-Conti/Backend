@@ -39,7 +39,7 @@ router.put('/task', authenticateHR, function (req, res) {
 	var d = new Date(); 
 	console.log("" + d + "\tExecuting API : Assign todo task");
 
-	var _id = req.employee._id;
+	var _id = req.body.empId;
 	var taskId = req.body.taskId;
 
 	Task.findById(taskId, function (err, task) {
