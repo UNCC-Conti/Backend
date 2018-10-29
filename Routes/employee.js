@@ -309,7 +309,7 @@ router.put('/submitTask', authenticateEmployee, function (req, res) {
 	if(isComplete){
 		Employee.updateOne({"_id":req.employee._id,"tasks.$._id":taskId},
 		{ "$set": { "tasks.message": message,"tasks.response":response, "tasks.inputs":inputs, 
-					"tasks.isComplete": isComplete, "tasks.status" : "Complete", "tasks.color" : "#989898"}},
+					"tasks.isComplete": isComplete, "tasks.$.status" : "Complete", "tasks.color" : "#989898"}},
 			
 			function(err, model) {
 				if(err){ res.status(400).send(err); }
