@@ -130,7 +130,7 @@ router.get('/viewTask',authenticateEmployee,function(req,res){
 	var taskId = req.header('taskId');
 
 
-	Employee.find({"_id":req.employee._id, "tasks._id": taskId },function(err,employee){
+	Employee.find({"_id":req.employee._id, "tasks.$._id": taskId },function(err,employee){
         
         if(!employee){
 			res.status(400).send(err); 
