@@ -1,0 +1,295 @@
+
+//Post employees
+{
+	"empId":"0005",
+	"empType":"New Hire",
+	"firstName":"Gabon",
+	"middleName":"",
+	"lastName":"Williams",
+	"nickName":"Gabon",
+	"userName":"gwilliams",
+	"email":"gwilliams@conti.com",
+	"password":"passwojgjkshjdj",
+	"workPhone":"7047562777",
+	"mobilePhone":"7049857388",
+	"department":"IT",
+	"division":"Systems Administration",
+	"jobTitle":"Systems Administrator",
+	"joinDate":"10/15/2017",
+	"managerName":"John Lewis",
+	"location":"Charlotte",
+	"vehicleEligibility":"true",
+	"cardEligibility":"true",
+	"fieldPosition":"N/A",
+	"lineManager":"jLewis@conti.com",
+	"primaryContact":"John Lewis",
+	"orientationDate":"10/20/2017",
+	"orientationTime":"11:00 AM",
+	"orientationLocation":"Main Office",
+	"orientationCity":"Charlotte",
+	"orientationState":"NC",
+	"orientationZip":"28204",
+	"otherInfo":"N/A"
+}
+token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1OWYzNzU2OGUyYzg3ZDJiYTBmNDRlYTAiLCJhY2Nlc3MiOiJhdXRoIiwiaWF0IjoxNTA5MTI3NjE4fQ.tpKzl8Q2F-rx8TXC9jQnap_B2FrMTMGC8aCGIbjEA7U
+
+admin token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1OWU3OTM5MzU1NDFmZTE3NWM1NjgxMGQiLCJhY2Nlc3MiOiJhdXRoIiwiaWF0IjoxNTA4MzQ4ODczfQ.l6vPFdItp9xPre30wNoxS4YPF3BAIbUSN_GMfIjG52I
+/assign/peerbuddy
+Link two employees as peerbuddies
+{
+	"UserId1":"0005",
+	"UserId2":"0003",
+	"_id1":"",
+	"_id2":"59e7c2c5b1eaf1380c7da432"
+}
+
+
+
+
+{
+	"empId":"0002",
+	"firstName":"Jim",
+	"middleName":"",
+	"lastName":"Jackson",
+	"nickName":"Jim",
+	"userName":"jjackson2",
+	"email":"jjackson2@conti.com",
+	"password":"password333",
+	"workPhone":"7043213244",
+	"mobilePhone":"7046541122",
+	"department":"IT",
+	"division":"Research and Development",
+	"jobTitle":"Researcher",
+	"joinDate":"05/01/2017",
+	"managerName":"Tim Roland",
+	"location":"Denver",
+	"vehicleEligibility":"true",
+	"cardEligibility":"true",
+	"fieldPosition":"N/A",
+	"lineManager":"troland@conti.com",
+	"primaryContact":"Tim Roland",
+	"orientationDate":"05/10/2017",
+	"orientationTime":"11:00 AM",
+	"orientationLocation":"Main Office",
+	"orientationCity":"Denver",
+	"orientationState":"CO",
+	"orientationZip":"12414",
+	"otherInfo":"N/A",
+	"empFlags":{
+		"active":true,
+		"onLeave":false,
+		"internal":false,
+		"HIPPA":false,
+		"ADA":false,
+		"currentEmployee":true
+	}
+}
+
+
+
+{
+	"empId":"0001",
+	"empType":"New Hire",
+	"firstName":"Taylor",
+	"middleName":"Ellis",
+	"lastName":"Conners",
+	"nickName":"Taylor",
+	"userName":"tconners",
+	"email":"tconners@conti.com",
+	"password":"password777",
+	"workPhone":"7047777777",
+	"mobilePhone":"7048888888",
+	"department":"IT",
+	"division":"Systems Administration",
+	"jobTitle":"Systems Administrator",
+	"joinDate":"10/15/2017",
+	"managerName":"John Lewis",
+	"location":"Charlotte",
+	"vehicleEligibility":"true",
+	"cardEligibility":"true",
+	"fieldPosition":"N/A",
+	"lineManager":"jLewis@conti.com",
+	"primaryContact":"John Lewis",
+	"orientationDate":"10/20/2017",
+	"orientationTime":"11:00 AM",
+	"orientationLocation":"Main Office",
+	"orientationCity":"Charlotte",
+	"orientationState":"NC",
+	"orientationZip":"28204",
+	"otherInfo":"N/A"
+}
+
+{
+	"empId":"0002",
+	"empType":"Current",
+	"firstName":"Elliot",
+	"middleName":"",
+	"lastName":"Grisham",
+	"nickName":"Eli",
+	"userName":"eliGrish22",
+	"email":"eligrish22@conti.com",
+	"password":"password888",
+	"workPhone":"7047771234",
+	"mobilePhone":"7044442332",
+	"department":"IT",
+	"division":"Onboarding",
+	"jobTitle":"Systems Analyst",
+	"joinDate":"11/15/2010",
+	"managerName":"John Lewis",
+	"location":"Boston",
+	"vehicleEligibility":"true",
+	"cardEligibility":"true",
+	"fieldPosition":"N/A",
+	"lineManager":"jLewis@conti.com",
+	"primaryContact":"John Lewis",
+	"orientationDate":"10/20/2010",
+	"orientationTime":"11:00 AM",
+	"orientationLocation":"Main Office",
+	"orientationCity":"Boston",
+	"orientationState":"MS",
+	"orientationZip":"99999",
+	"otherInfo":"Likes kittens"
+}
+
+{
+	"empId":"0003",
+	"empType":"Current",
+	"firstName":"Elliotasdfsdga",
+	"middleName":"",
+	"lastName":"Grisasdgsdagham",
+	"nickName":"Eli",
+	"userName":"eliGrisdgsagsh22",
+	"email":"eligrish2ddddg2@conti.com",
+	"password":"passworsdgadsd888",
+	"workPhone":"7047771asdgdsg234",
+	"mobilePhone":"704444hhhhh2332",
+	"department":"IT",
+	"division":"Onboarding",
+	"jobTitle":"Systems Analyst",
+	"joinDate":"11/15/2010",
+	"managerName":"John Lewis",
+	"location":"Boston",
+	"vehicleEligibility":"true",
+	"cardEligibility":"true",
+	"fieldPosition":"N/A",
+	"lineManager":"jLewis@conti.com",
+	"primaryContact":"John Lewis",
+	"orientationDate":"10/20/2010",
+	"orientationTime":"11:00 AM",
+	"orientationLocation":"Main Office",
+	"orientationCity":"Boston",
+	"orientationState":"MS",
+	"orientationZip":"99999",
+	"otherInfo":"Likes kittens"
+}
+
+Link two employees as peerbuddies
+{
+	"UserId1":"0003",
+	"UserId2":"0002",
+	"_id1":"59e7bddc6aea5e43d8250c1f",
+	"_id2":"59e7a5423437a20688e35926"
+}
+
+Remove Employee:
+{
+	"UserId":"59e3ea2ba707cb16ec8ab02f"
+}
+
+Create Todo Task
+{
+	"description":"Collect your Finance Forms",
+	"rewardPoints":100,
+	"priority":"High",
+	"title":"Test",
+	"type":"Test1",
+	"duration":"9",
+	"location":"Test",
+	"division":"Test",
+	"department":"Test"
+}
+
+Assign task to user:
+{
+	"UserId":"5988d43395c2ca1bbc26f8c4",
+	"toDoId":"5988ef1e0e1e8b0ad007df55",
+	 "status":"open",
+	"startDate":"25th August 2017",
+	"dueDate":"28th August 2017"
+}
+
+
+
+Assign task to employee:
+{
+	"UserId":"59e3ea2ba707cb16ec8ab02f",
+	"toDoId":"59e3eb90a707cb16ec8ab030",
+	"status":"open",
+	"startDate":"25th August 2017",
+	"dueDate":"28th August 2017"
+}
+
+Assign flags to employee:
+{
+	"UserId":"59e3ea2ba707cb16ec8ab02f",
+	"active":"true",
+	"onLeave":"false",
+	"internal":"true",
+	"HIPPA":"false",
+	"ADA":"true"
+}
+
+
+OLD CODE:
+router.put('/assign/peerbuddy', authenticate, function(req,res){
+	var UserId1 = req.body.UserId1;
+	var UserId2 = req.body.UserId2;
+	var _id1 = req.body._id1;
+	var _id2 = req.body._id2;//
+	Peerbuddy.findOne({empId:UserId1},function(err,peer1){
+		if (err) {
+			res.status(400).send(err);
+		} else {
+			//res.send(model);
+			Peerbuddy.findOne({empId:UserId2}, function(err,peer2){
+				if (err) {
+					res.status(400).send(err);
+				} else {
+					Employee.findById(_id1, function(err,emp1){
+						Employee.findById(_id2, function(err,emp2){
+							var body1 = {
+								"buddy":peer2,
+								"status":true
+							};
+							var body2 = {
+								"buddy":peer1,
+								"status":true
+							};
+							
+							Employee.findByIdAndUpdate(_id1,
+														{$push: {"peerbuddies":body1}},
+															{safe:true, upsert:true, strict:false},
+															function(err,model){
+								if (err) {
+									res.status(400).send(err);
+								} else {
+									//res.send({"status":"success"});
+								}//
+							});
+							Employee.findByIdAndUpdate(_id2,
+														{$push: {"peerbuddies":body2}},
+															{safe:true, upsert:true, strict:false},
+															function(err,model){
+								if (err) {
+									res.status(400).send(err);
+								} else {
+									res.send({"status":"success"});
+								}
+							});
+						});
+					});
+				}
+			});
+		}
+	});
+});
