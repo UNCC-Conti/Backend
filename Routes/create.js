@@ -188,7 +188,7 @@ router.post('/task', authenticateHR, function (req, res) {
 	console.log('' + d + '\tExecuting API : Create a todo task')
     Log.updateLog(req.employee._id,'Creating a new todo.')
 
-	var body = _.pick(req.body, ['description', 'rewardPoints', 'priority', 'duration', 'url',
+	var body = _.pick(req.body, ['instructions', 'rewardPoints', 'priority', 'duration', 'url', 'inputs',
 								'color', 'category', 'title', 'type', 'location', 'department','division'])
 
 	var toDo = new Task(body)

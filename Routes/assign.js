@@ -55,7 +55,22 @@ router.put('/task', authenticateHR, function (req, res) {
 				"status": "open",
 				"startDate": new Date(req.body.startDate),
 				"dueDate": new Date(req.body.dueDate),
-				"endDate": new Date(req.body.endDate) || new Date(req.body.dueDate)
+				"endDate": new Date(req.body.endDate) || new Date(req.body.dueDate),
+				"title": task.title,
+				"instructions": task.instructions,
+				"rewardPoints": task.rewardPoints,
+				"color": task.color,
+				"duration": task.duration,
+				"url": task.url,
+				"type": task.type,
+				"isComplete" : task.isComplete,
+				"priority": task.priority,
+				"category": task.category,
+				"location":"Any",
+				"division":"Any",
+				"department":"Any",
+				"inputs" : task.inputs
+				
 			};
 
 			//console.log(body);

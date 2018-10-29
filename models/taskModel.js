@@ -8,7 +8,7 @@ var taskSchema = new mongoose.Schema({
         minlength : 1,
         trim : true  
     },
-    description : {
+    instructions : {
         type : String,
         required : true,
         minlength : 1,
@@ -57,6 +57,15 @@ var taskSchema = new mongoose.Schema({
         type : Boolean,
         default : false
     },
+    inputs : [{
+        name : {
+            type : String
+        },
+        value : {
+            type : Boolean,
+            default : false
+        }
+    }],
     
     
     
