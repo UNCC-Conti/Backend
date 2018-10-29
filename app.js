@@ -7,7 +7,7 @@ const {mongoose} = require('./dbConfig/mongoose');
 var app=express(); 
 app.use(bodyParser.json());
 app.use(cors());
-const port=process.env.PORT || 5800; 
+const port=process.env.PORT || 80; 
 
 var createRoutes = require("./Routes/create");
 var removeRoutes = require("./Routes/remove");
