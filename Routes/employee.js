@@ -300,7 +300,7 @@ router.put('/submitTask', authenticateEmployee, function (req, res) {
 	var d = new Date(); 
 	console.log("" + d + "\tExecuting API : Updating Quiz Status");
 
-	var taskId = req.body.taskId;
+	var taskId = req.body._id;
 	var message = req.body.message;
 	var response = req.body.response;
 	var isComplete = req.body.isComplete;
