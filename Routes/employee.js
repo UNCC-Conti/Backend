@@ -306,14 +306,14 @@ router.put('/submitTask', authenticateEmployee, function (req, res) {
 	var isComplete = req.body.isComplete;
 	var inputs = req.body.inputs
 
-	if(isComplete){
+	if(isComplete || true){
 		Employee.updateOne({"_id":req.employee._id,"tasks.$._id":taskId},
-		{ "$set": { "tasks.message": message,"tasks.response":response, "tasks.inputs":inputs, 
-					"tasks.isComplete": isComplete, "tasks.$.status" : "Complete", "tasks.color" : "#989898"}},
+		{ "$set": { "tasks.$.status" : "Complete", "tasks.$.color" : "#989898"}},
 			
 			function(err, model) {
 				if(err){ res.status(400).send(err); }
 				else{
+					console.log("Model is : " + model)
 					Log.updateLog(req.employee._id, "Submitted the Quiz status for : " + taskId)
 					var body = {
 						"status" : "Successfully Completed The Task",
