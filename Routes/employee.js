@@ -119,7 +119,7 @@ router.get('/assignedTasks', authenticateEmployee, function (req, res) {
     Employee.find({"_id":id}, {tasks:1, _id:0}).then((tasks) => {
 
 		Log.updateLog(id, "Viewing the assigned quizzes")
-		res.status(200).send(tasks);
+		res.status(200).send(tasks[0]);
     }, (e) => {
 		res.status(400).send({'status': 'Error getting all the Tasks for the employee', 'Error': e})
 	})
