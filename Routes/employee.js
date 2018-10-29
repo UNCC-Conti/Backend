@@ -307,7 +307,7 @@ router.put('/submitTask', authenticateEmployee, function (req, res) {
 	var inputs = req.body.inputs
 
 	if(isComplete){
-		Employee.updateOne({"_id":req.employee._id,"tasks._id":taskId},
+		Employee.updateOne({"_id":req.employee._id,"tasks.$._id":taskId},
 		{ "$set": { "tasks.$.message": message,"tasks.$.response":response, "tasks.$.inputs":inputs, 
 					"tasks.$.isComplete": isComplete, "tasks.$.status" : "Complete"}},
 			
