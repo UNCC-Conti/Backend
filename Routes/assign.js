@@ -50,7 +50,6 @@ router.put('/task', authenticateHR, function (req, res) {
 		else {
 
 			var body = {
-				"task": task,
 				//                "taskId":todoId,
 				"status": "open",
 				"startDate": new Date(req.body.startDate),
