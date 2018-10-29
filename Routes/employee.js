@@ -304,11 +304,12 @@ router.put('/submitTask', authenticateEmployee, function (req, res) {
 	var message = req.body.message;
 	var response = req.body.response;
 	var isComplete = req.body.isComplete;
+	var inputs = req.body.inputs
 
 	if(isComplete){
 		Employee.updateOne({"_id":req.employee._id,"tasks._id":taskId},
-		{ "$set": { "tasks.$.task.message": message,"tasks.$.task.response":response, 
-					"tasks.$.task.isComplete": isComplete, "tasks.$.status" : "Complete"}},
+		{ "$set": { "tasks.$.message": message,"tasks.$.response":response, "tasks.$.inputs":inputs, 
+					"tasks.$.isComplete": isComplete, "tasks.$.status" : "Complete"}},
 			
 			function(err, model) {
 				if(err){ res.status(400).send(err); }
