@@ -259,10 +259,12 @@ router.put('/submitQuiz', authenticateEmployee, function (req, res) {
 				quiz = quizzes[0].quizzes[i].quiz
 
 				if(quiz.attemptNumber < quiz.numberOfAttempts){
+					var clearedResponses = []
 					attemptNumber = quiz.attemptNumber + 1
 					var score = 0
 					var total = 0
 					for(var j = 0; j < quiz.questions.length;j++){
+						clearedResponses.push("")
 						if(quiz.questions[j].answer == responses[j]){
 							score = score + quiz.questions[j].question.points
 						}
@@ -281,7 +283,7 @@ router.put('/submitQuiz', authenticateEmployee, function (req, res) {
 	
 	
 					Employee.updateOne({"_id":req.employee._id,"quizzes._id":quizId},
-					{ "$set": { "quizzes.$.quiz.currentProgress": Number(currentProgress),"quizzes.$.quiz.responses":responses, 
+					{ "$set": { "quizzes.$.quiz.currentProgress": Number(currentProgress),"quizzes.$.quiz.responses":clearedResponses, 
 								"quizzes.$.quiz.score": score, "quizzes.$.quiz.attemptNumber": attemptNumber,
 								"quizzes.$.status" : status, "rewardPoints" : totalRewards}},
 					function(err, model) {
