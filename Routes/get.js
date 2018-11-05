@@ -201,6 +201,22 @@ router.get('/tasks', authenticateHR, function (req, res) {
 	})
 })
 
+router.get('/employeeTasks', authenticateHR, function (req, res) {
+
+	var d = new Date()
+	console.log("" + d + "\tExecuting API: List assigned task of the user")
+    var id = req.params.empId
+
+    Employee.find({"_id":id}, {tasks:1, _id:0}).then((tasks) => {
+
+		Log.updateLog(id, "Viewing the assigned tasks")
+		res.status(200).send(tasks[0]);
+    }, (e) => {
+		res.status(400).send({'status': 'Error getting all the Tasks for the employee', 'Error': e})
+	})
+})
+
+
 router.get('/assignedQuizzes', authenticateHR, function (req, res) {
 
 	var d = new Date()
