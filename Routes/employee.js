@@ -99,7 +99,9 @@ router.get('/assignedQuizzes', authenticateEmployee, function (req, res) {
 				score: quizzes[0].quizzes[i].quiz.score,
 				attemptNumber: quizzes[0].quizzes[i].quiz.attemptNumber,
 				numberOfAttempts: quizzes[0].quizzes[i].quiz.numberOfAttempts,
-				rewardPoints: quizzes[0].quizzes[i].quiz.rewardPoints
+				rewardPoints: quizzes[0].quizzes[i].quiz.rewardPoints,
+				timeLeft: quizzes[0].quizzes[i].timeLeft
+
 			};
 			response.push(body);
 		}
