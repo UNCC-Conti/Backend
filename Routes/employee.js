@@ -217,9 +217,12 @@ router.put('/updateQuizStatus', authenticateEmployee, function (req, res) {
 	var quizId = req.body.quizId;
 	var currentProgress = req.body.currentProgress;
 	var responses = req.body.responses;
+	var time = req.body.timeInMinutes
 
     Employee.updateOne({"_id":req.employee._id,"quizzes._id":quizId},
-                   { "$set": { "quizzes.$.quiz.currentProgress": Number(currentProgress),"quizzes.$.quiz.responses":responses}},
+				   { "$set": { "quizzes.$.quiz.currentProgress": Number(currentProgress),
+								   "quizzes.$.quiz.responses":responses,
+								   "quizzes.$.quiz.timeInMinutes": time}},
                    function(err, model) {
         if(err)
         {
