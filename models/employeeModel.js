@@ -290,7 +290,8 @@ var EmployeeSchema = new mongoose.Schema({
             required : true,
             minlength : 1,
             trim : true
-        }
+        },
+        timeLeft : Number
 
     }],
 
