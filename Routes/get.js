@@ -238,7 +238,8 @@ router.get('/assignedQuizzes', authenticateHR, function (req, res) {
 				status: quizzes[0].quizzes[i].status,
 				quizId: quizzes[0].quizzes[i]._id,
 				timeInMinutes: quizzes[0].quizzes[i].quiz.timeInMinutes,
-				score: quizzes[0].quizzes[i].quiz.score
+				score: quizzes[0].quizzes[i].quiz.score,
+				timeLeft: quizzes[0].quizzes[i].timeLeft
 
 			};
 			response.push(body);
