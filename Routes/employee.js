@@ -217,12 +217,12 @@ router.put('/updateQuizStatus', authenticateEmployee, function (req, res) {
 	var quizId = req.body.quizId;
 	var currentProgress = req.body.currentProgress;
 	var responses = req.body.responses;
-	var time = req.body.timeInMinutes
+	var time = req.body.timeLeft
 
     Employee.updateOne({"_id":req.employee._id,"quizzes._id":quizId},
 				   { "$set": { "quizzes.$.quiz.currentProgress": Number(currentProgress),
 								   "quizzes.$.quiz.responses":responses,
-								   "quizzes.$.quiz.timeInMinutes": time}},
+								   "quizzes.$.timeLeft": time}},
                    function(err, model) {
         if(err)
         {
@@ -279,13 +279,14 @@ router.put('/submitQuiz', authenticateEmployee, function (req, res) {
 					}else{
 						status = "Failed"
 					}
-	
+					
+					var timeLeft = quizzes[0].quizzes[i].quiz.timeInMinutes
 	
 	
 					Employee.updateOne({"_id":req.employee._id,"quizzes._id":quizId},
 					{ "$set": { "quizzes.$.quiz.currentProgress": Number(currentProgress),"quizzes.$.quiz.responses":clearedResponses, 
 								"quizzes.$.quiz.score": score, "quizzes.$.quiz.attemptNumber": attemptNumber,
-								"quizzes.$.status" : status, "rewardPoints" : totalRewards}},
+								"quizzes.$.status" : status, "rewardPoints" : totalRewards, "quizzes.$.timeLeft": timeLeft}},
 					function(err, model) {
 						if(err){ res.status(400).send(err); }
 						else{

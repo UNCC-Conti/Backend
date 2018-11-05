@@ -252,8 +252,8 @@ router.put('/assignQuizTemplate', authenticateHR, function (req, res) {
 						"quiz": quiz,
 						"status": "open",
 						"startDate": req.body.startDate,
-						"dueDate": req.body.dueDate
-		
+						"dueDate": req.body.dueDate,
+						"timeLeft" : quiz.timeInMinutes
 					};
 		
 					console.log(body);

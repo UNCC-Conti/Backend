@@ -22,10 +22,6 @@ var quizSchema = new mongoose.Schema({
         type : Number,
         default : 60
     },
-    timeLeft : {
-        type : Number,
-        default : timeInMinutes
-    },
     rewardPoints : {
         type : Number,
         default : 0
