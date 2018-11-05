@@ -241,51 +241,63 @@ router.put('/submitQuiz', authenticateEmployee, function (req, res) {
 	console.log("" + d + "\tExecuting API : Updating Quiz Status");
 
 	var quizId = req.body.quizId;
-	var currentProgress = req.body.currentProgress;
+	// var currentProgress = req.body.currentProgress;
+	var currentProgress = 100
 	var responses = req.body.responses;
+
 
 	Employee.find({"_id":req.employee._id, "quizzes._id" : quizId}, {quizzes:1, rewardPoints:1, _id:0}).then((quizzes) => {
 		var quiz;
-		console.log("Quizzes are : " + quizzes)
+
+		// console.log("Quizzes are : " + quizzes)
 		for(var i = 0; i < quizzes[0].quizzes.length;i++){
 
 			if(quizzes[0].quizzes[i]._id == quizId){
 				quiz = quizzes[0].quizzes[i].quiz
 
-				attemptNumber = quiz.attemptNumber + 1
-				var score = 0
-				var total = 0
-				for(var j = 0; j < quiz.questions.length;j++){
-					if(quiz.questions[j].answer == responses[j]){
-						score = score + quiz.questions[j].question.points
-					}
-					total = total + quiz.questions[j].question.points
-				}
-				var status = "Pending"
-				// var newRewardPoints = quizzes[1]
-				if(score*100/total > quiz.threshold){
-					status = "Passed"
-				}else{
-					status = "Failed"
-				}
-
-				Employee.updateOne({"_id":req.employee._id,"quizzes._id":quizId},
-				{ "$set": { "quizzes.$.quiz.currentProgress": Number(currentProgress),"quizzes.$.quiz.responses":responses, 
-							"quizzes.$.quiz.score": score, "quizzes.$.quiz.attemptNumber": attemptNumber,
-							"quizzes.$.status" : status}},
-				function(err, model) {
-					if(err){ res.status(400).send(err); }
-					else{
-						Log.updateLog(req.employee._id, "Submitted the Quiz status for : " + quizId)
-						var body = {
-							"status":"Successfully Submitted the quiz",
-							"score" : score,
-							"status" : status
+				if(quiz.attemptNumber < quiz.numberOfAttempts){
+					attemptNumber = quiz.attemptNumber + 1
+					var score = 0
+					var total = 0
+					for(var j = 0; j < quiz.questions.length;j++){
+						if(quiz.questions[j].answer == responses[j]){
+							score = score + quiz.questions[j].question.points
 						}
-						res.send(body);
+						total = total + quiz.questions[j].question.points
 					}
-
-				});
+					var status = "Pending"
+					var newRewardPoints = quizzes[0].quizzes[i].quiz.rewardPoints
+					var totalRewards = quizzes[0].rewardPoints
+					if(score*100/total > quiz.threshold){
+						status = "Passed"
+						var totalRewards =  quizzes[0].rewardPoints + newRewardPoints
+					}else{
+						status = "Failed"
+					}
+	
+	
+	
+					Employee.updateOne({"_id":req.employee._id,"quizzes._id":quizId},
+					{ "$set": { "quizzes.$.quiz.currentProgress": Number(currentProgress),"quizzes.$.quiz.responses":responses, 
+								"quizzes.$.quiz.score": score, "quizzes.$.quiz.attemptNumber": attemptNumber,
+								"quizzes.$.status" : status, "rewardPoints" : totalRewards}},
+					function(err, model) {
+						if(err){ res.status(400).send(err); }
+						else{
+							Log.updateLog(req.employee._id, "Submitted the Quiz status for : " + quizId)
+							var body = {
+								"status":"Successfully Submitted the quiz",
+								"score" : score,
+								"status" : status
+							}
+							res.send(body);
+						}
+	
+					});
+				}else{
+					res.status(401).send("You ran out of attempts."); 
+				}
+				
 				break
 			}
 		}
