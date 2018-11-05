@@ -58,7 +58,7 @@ router.get('/listEmployees', authentication, function (req, res) {
                         response[i].jobTitle = employees[i].jobTitle
                         response[i].reportTo = employees[i].reportTo
 						response[i].isPeerBuddy = employees[i].isPeerBuddy
-						esponse[i]._id = employees[i]._id
+						response[i]._id = employees[i]._id
                     }
                 case 'EMPLOYEE':
                     for(var i = 0; i < employees.length;i++){
