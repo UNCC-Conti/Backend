@@ -18,7 +18,6 @@ var storage = multer.diskStorage({
 var upload = multer({ storage: storage });
 var finalResult = false;
 
-
 router.post("/upload", upload.array("uploads[]", 12), function (req, res) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "*");	
@@ -218,3 +217,5 @@ function validateQuestionJson(jsonItem, row) {
         majorError = false;
     }
 }
+
+module.exports = router;
