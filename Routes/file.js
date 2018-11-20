@@ -1,4 +1,4 @@
-const csvFilePath = 'E:/UNCC/RA-WEB/Test Workspace/Test/uploads/data.csv'
+const csvFilePath = 'uploads/data.csv'
 const csv = require('csvtojson');
 var express = require("express")
 var router = express.Router()
