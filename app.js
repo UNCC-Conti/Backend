@@ -15,6 +15,7 @@ var updateRoutes = require("./Routes/update");
 var getRoutes = require("./Routes/get");
 var employeeRoutes = require("./Routes/employee");
 var assignRoutes = require("./Routes/assign");
+var fileRoutes = require("./Routes/file");
 
 app.use("/create",createRoutes);
 app.use("/remove",removeRoutes);
@@ -22,6 +23,7 @@ app.use("/get",getRoutes);
 app.use("/update",updateRoutes);
 app.use("/employee",employeeRoutes);
 app.use("/assign", assignRoutes);
+app.use("/file", fileRoutes);
 
 app.get("/",function(req,res){
     res.status(200).send("Server is Online!");
