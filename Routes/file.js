@@ -19,7 +19,7 @@ var upload = multer({ storage: storage });
 var finalResult = false;
 
 
-app.post("/upload", upload.array("uploads[]", 12), function (req, res) {
+router.post("/upload", upload.array("uploads[]", 12), function (req, res) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "*");	
 	
