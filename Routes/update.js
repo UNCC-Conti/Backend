@@ -47,63 +47,6 @@ var { Log } = require('./../models/logModel');
     API name: /taskTemplate
     this api will get a old expired token and will return a new updated token in response
 */
-router.put('/task', authenticateHR, function (req, res) {
-
-	var d = new Date(); 
-	console.log("" + d + "\tExecuting API : Assign todo task");
-
-	var _id = req.body.empId;
-	var taskId = req.body.taskId;
-
-	Task.findById(taskId, function (err, task) {
-
-		if (!task) {
-			res.status(400).send({'status': 'Error assigning task to employee. Task not found.', 'Error': err});
-		}
-		else {
-
-			var body = {
-				//                "taskId":todoId,
-				"status": "open",
-				"startDate": new Date(req.body.startDate),
-				"dueDate": new Date(req.body.dueDate),
-				"endDate": new Date(req.body.endDate) || new Date(req.body.dueDate),
-				"title": task.title,
-				"instructions": task.instructions,
-				"rewardPoints": task.rewardPoints,
-				"color": task.color,
-				"duration": task.duration,
-				"url": task.url,
-				"type": task.type,
-				"isComplete" : task.isComplete,
-				"priority": task.priority,
-				"category": task.category,
-				"location":"Any",
-				"division":"Any",
-				"department":"Any",
-				"inputs" : task.inputs
-				
-			};
-
-			//console.log(body);
-
-			Employee.findByIdAndUpdate(_id,
-				{ $push: { "tasks": body } },
-				{ safe: true, upsert: true },
-				function (err, model) {
-					if (err) {
-						res.status(400).send({'status': 'Error assigning task to employee.', 'Error': err});
-					}
-					else {
-						Log.updateLog(req.employee._id,"Assiging todo task: " + task.title + " to the user : " + model.firstName + " " + model.lastName);
-						Log.updateLog(_id,"A new todo is assigned by + " + req.employee.firstName + " " +req.employee.lastName);
-						res.status(200).send({ "status": "Successfully assigned the task" });
-					}
-
-				});
-		}
-
-	});
 	
 /* TODO: 
     API name: /addTaskToTaskTemplate
@@ -176,8 +119,7 @@ router.put('/addTaskToTaskTemplate', authenticate, function (req, res) {
 		}
 
 	});
-
-});
+})
 
 /* TODO: 
     API name: /quizQuestion
