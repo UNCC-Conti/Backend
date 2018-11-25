@@ -53,7 +53,7 @@ var { Log } = require('./../models/logModel');
     this api will get a old expired token and will return a new updated token in response
 */
 // API to assign a task to a task Template
-router.put('/addTaskToTaskTemplate', authenticate, function (req, res) { 
+router.put('/addTaskToTaskTemplate', authenticateHR, function (req, res) { 
 
 	var d = new Date(); 
 	console.log("" + d + "\tExecuting API : Add task to task template");
