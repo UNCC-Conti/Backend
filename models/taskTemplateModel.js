@@ -38,17 +38,22 @@ var taskTemplateSchema = new mongoose.Schema({
         minlength : 1,
         trim : true
     },
-    assignedDepartmentId : {
+    assignedDepartment : [{
         type : String,
         minlength : 1,
         trim : true
-    },
+    }],
     todoTasks : [{
         task : {
             type : Task.schema,
             required : true
         },
-    }]
+    }],
+    tags : [{
+        type : String,
+        minlength : 1,
+        trim : true
+    }] 
 });
 
 var TaskTemplate = mongoose.model('TaskTemplates',taskTemplateSchema);
