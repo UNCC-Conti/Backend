@@ -340,12 +340,18 @@ router.put('/submitTask', authenticateEmployee, function (req, res) {
 		// }, (e) => {
 
 		// })
+		var status = "Complete"
 
+		for(var i = 0; i < inputs.length; i++){
+			if(inputs[i].value == false){
+				status = "In Progress"
+			}
+		}
 
 
 
 		Employee.updateOne({"_id":req.employee._id,"tasks._id":taskId},
-		{ "$set": { "tasks.$.status" : "Complete", "tasks.$.color" : "#989898",
+		{ "$set": { "tasks.$.status" : status, "tasks.$.color" : "#989898",
 					"tasks.$.inputs" : inputs, "tasks.$.response" : response,	}},
 			
 			function(err, model) {
