@@ -135,6 +135,7 @@ router.get('/getDashInfoEmployee', authenticateHR, function (req, res) {
 					}
 				}
 			}
+			console.log(JSON.stringify(response))
 			response.completedTasks = doneTasks
 			response.overDueTasks = overDueTasks
 			response.progress = doneTasks*100.0/completedTasks
