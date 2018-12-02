@@ -97,7 +97,7 @@ router.get('/getDashInfoEmployee', authenticateHR, function (req, res) {
     // var id = req.header('employeeId');
 
 	console.log("We are calling the get Employee API. ")
-	var id = req.body.empId
+	var id = req.header('empId')
 
     Employee.findOne({'employeeId' : id}).then((employees) => {
 
