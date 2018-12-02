@@ -247,6 +247,32 @@ router.put('/assignQuizTemplate', authenticateHR, function (req, res) {
                     res.status(400).send({'status': 'Error assigning quiz to employee. Quiz does not exist.', 'Error': err});
 				}
 				else {
+
+					var taskBody = {
+						//                "taskId":todoId,
+						"status": "open",
+						"startDate": new Date(req.body.startDate),
+						"dueDate": new Date(req.body.dueDate),
+						"endDate": new Date(req.body.endDate) || new Date(req.body.dueDate),
+						"title": quiz.quizName,
+						"instructions": "Take the Quiz from the quiz section.",
+						"rewardPoints": quiz.rewardPoints,
+						"color": '#696969',
+						"duration": quiz.duration,
+						"url": 'N/A',
+						"type": 'Quiz',
+						"isComplete" : 'Incomplete',
+						"priority": 'High',
+						"category": 'Taking a Quiz',
+						"location":"Any",
+						"division":"Any",
+						"department":"Any",
+						"inputs" : {
+							value : 'false',
+							name : "Finished this quiz",
+						}
+						
+					};
 		
 					var body = {
 						"quiz": quiz,
@@ -255,25 +281,26 @@ router.put('/assignQuizTemplate', authenticateHR, function (req, res) {
 						"dueDate": req.body.dueDate,
 						"timeLeft" : quiz.timeInMinutes
 					};
-		
-					console.log(body);
+					//console.log(body);
 		
 					Employee.findByIdAndUpdate(_id,
-						{ $push: { "quizzes": body } },
+						{ $push: { "tasks": taskBody, "quizzes": body } },
 						{ safe: true, upsert: true },
 						function (err, model) {
 							if (err) {
-                                res.status(400).send({'status': 'Error assigning quiz to employee. Please try again.', 'Error': err});
+								res.status(400).send({'status': 'Error assigning quiz as a task to employee.', 'Error': err});
 							}
 							else {
+								Log.updateLog(req.employee._id,"Assiging todo task: " + taskBody.title + " to the user : " + model.firstName + " " + model.lastName);
+								Log.updateLog(_id,"A new todo is assigned by + " + req.employee.firstName + " " +req.employee.lastName);
 								Log.updateLog(req.employee._id,"Assiging Quiz: " + quiz.quizName + " to the user : " + model.firstName + " " + model.lastName);
 								Log.updateLog(_id,"A new quiz is assigned by + " + req.employee.firstName + " " +req.employee.lastName);
-								res.status(200).send({ "status": "Successfully assigned quiz." });
-							}
-		
-						});
-				}
-			
+								
+								res.status(200).send({ "status": "Successfully assigned the quiz" });
+							}	
+						}
+					);					
+				}		
 			});
 	
 		}else{
