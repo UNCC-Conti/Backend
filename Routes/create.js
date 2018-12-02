@@ -220,7 +220,7 @@ router.post('/taskTemplate', authenticateHR, function (req, res) {
       'createdBy': req.employee.firstName + ' ' + req.employee.lastName,
       'createdUserRole': 'HRBP',
       'duration': req.body.duration,
-      'active': req.body.active,
+      'active': 'true',
       'assignedRoleId': req.body.assignedRoleId,
       'assignedDepartment': req.body.assignedDepartment,
       'tags': req.body.tags,
