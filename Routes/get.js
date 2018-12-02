@@ -99,7 +99,7 @@ router.get('/getDashInfoEmployee', authenticateHR, function (req, res) {
 	console.log("We are calling the get Employee API. ")
 	var id = req.header('empId')
 
-    Employee.findOne({'employeeId' : id}).then((employees) => {
+    Employee.findOne({'_id' : id}).then((employees) => {
 
         if (!employees){
             var response = { 'error' : "Could not find Employees" }

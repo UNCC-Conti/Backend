@@ -262,7 +262,7 @@ router.put('/assignQuizTemplate', authenticateHR, function (req, res) {
 						"url": 'N/A',
 						"type": 'Quiz',
 						"isComplete" : 'Incomplete',
-						"priority": 'High',
+						"priority": 1,
 						"category": 'Taking a Quiz',
 						"location":"Any",
 						"division":"Any",
