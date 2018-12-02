@@ -69,7 +69,7 @@ router.put('/addTaskToTaskTemplate', authenticateHR, function (req, res) {
 		if (err) {
 			res.status(400).send(err);
 		}
-		if (!todo) {
+		if (!task) {
 
 			res.status(400).send({ 'status': 'Invalid Task Id' });
 		}
