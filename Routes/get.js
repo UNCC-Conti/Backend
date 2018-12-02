@@ -101,46 +101,47 @@ router.get('/getDashInfoEmployee', authenticateHR, function (req, res) {
 
     Employee.findOne({'_id' : id}).then((employees) => {
 
-        if (!employees){
-            var response = { 'error' : "Could not find Employees" }
-            res.status(400).send(response)
-        }else{
-            var response = []
-            for(var i = 0; i < employees.length;i++){ response.push({}) }
+		res.status(200).send(employees)
+        // if (!employees){
+        //     var response = { 'error' : "Could not find Employees" }
+        //     res.status(400).send(response)
+        // }else{
+        //     var response = []
+        //     for(var i = 0; i < employees.length;i++){ response.push({}) }
 
 
-                    for(var i = 0; i < employees.length;i++){
-                        response[i].jobTitle = employees[i].jobTitle
-                        // response[i].reportTo = employees[i].reportTo
-						// response[i].isPeerBuddy = employees[i].isPeerBuddy
-						response[i]._id = employees[i]._id
-                        response[i].firstName = employees[i].firstName
-                        response[i].lastName = employees[i].lastName
-                        // response[i].email = employees[i].email
-						// response[i].workPhone = employees[i].workPhone
-						response[i].totalTasks = employees[i].tasks.length
-						var doneTasks = 0
-						var overDueTasks = 0
+        //             for(var i = 0; i < employees.length;i++){
+        //                 response[i].jobTitle = employees[i].jobTitle
+        //                 // response[i].reportTo = employees[i].reportTo
+		// 				// response[i].isPeerBuddy = employees[i].isPeerBuddy
+		// 				response[i]._id = employees[i]._id
+        //                 response[i].firstName = employees[i].firstName
+        //                 response[i].lastName = employees[i].lastName
+        //                 // response[i].email = employees[i].email
+		// 				// response[i].workPhone = employees[i].workPhone
+		// 				response[i].totalTasks = employees[i].tasks.length
+		// 				var doneTasks = 0
+		// 				var overDueTasks = 0
 
-						for(var j = 0; j < employees[i].tasks.length; j++){
-							if(employees[i].tasks[j].status == "Complete"){
-								doneTasks = doneTasks + 1
-							}else{
-								var dueDate = new Date(employees[i].tasks[j].dueDate) 
-								var currentDate = new Date()
-								if(currentDate > dueDate){
-									overDueTasks = overDueTasks + 1
-								}
-							}
-						}
-						response[i].completedTasks = doneTasks
-						response[i].overDueTasks = overDueTasks
-						response[i].progress = doneTasks*100.0/completedTasks
+		// 				for(var j = 0; j < employees[i].tasks.length; j++){
+		// 					if(employees[i].tasks[j].status == "Complete"){
+		// 						doneTasks = doneTasks + 1
+		// 					}else{
+		// 						var dueDate = new Date(employees[i].tasks[j].dueDate) 
+		// 						var currentDate = new Date()
+		// 						if(currentDate > dueDate){
+		// 							overDueTasks = overDueTasks + 1
+		// 						}
+		// 					}
+		// 				}
+		// 				response[i].completedTasks = doneTasks
+		// 				response[i].overDueTasks = overDueTasks
+		// 				response[i].progress = doneTasks*100.0/completedTasks
 
-                    }
+        //             }
             
-            res.status(200).send(response)
-        }
+        //     res.status(200).send(response)
+        // }
             
     })
 })
