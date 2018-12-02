@@ -64,7 +64,7 @@ router.put('/addTaskToTaskTemplate', authenticateHR, function (req, res) {
 		res.status(400).send({ 'status': 'Invalid Task Template Id' });
 
 
-	Todo.findById(todoTaskId, function (err, task) {
+	Task.findById(todoTaskId, function (err, task) {
 
 		if (err) {
 			res.status(400).send(err);
