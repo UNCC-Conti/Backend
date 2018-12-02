@@ -144,7 +144,7 @@ router.get('/getDashInfoEmployee', authenticateHR, function (req, res) {
 			var quizzes = []
 			for(var j = 0; j < employee.quizzes.length; j++){
 
-				tasks.push({}) 
+				quizzes.push({}) 
 				quizzes[j].title = employee.quizzes[j].quiz.quizName
 				quizzes[j].status = employee.quizzes[j].status
 				quizzes[j].numberOfAttempts = employee.quizzes[j].quiz.numberOfAttempts
