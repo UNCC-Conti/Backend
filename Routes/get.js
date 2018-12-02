@@ -113,7 +113,7 @@ router.get('/getDashInfoEmployee', authenticateHR, function (req, res) {
 
 			var tasks = []
 
-			var doneTasks = 0
+			var completedTasks = 0
 			var overDueTasks = 0
 
 			for(var j = 0; j < employee.tasks.length; j++){
@@ -126,7 +126,7 @@ router.get('/getDashInfoEmployee', authenticateHR, function (req, res) {
 				tasks[j].inputs = employee.tasks[j].inputs
 
 				if(employee.tasks[j].status == "Complete"){
-					doneTasks = doneTasks + 1
+					completedTasks = completedTasks + 1
 				}else{
 					var dueDate = new Date(employee.tasks[j].dueDate) 
 					var currentDate = new Date()
@@ -136,7 +136,7 @@ router.get('/getDashInfoEmployee', authenticateHR, function (req, res) {
 				}
 			}
 			console.log(JSON.stringify(response))
-			response.completedTasks = doneTasks
+			response.completedTasks = completedTasks
 			response.overDueTasks = overDueTasks
 			response.progress = doneTasks*100.0/completedTasks
 			response.tasks = tasks
