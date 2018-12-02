@@ -105,7 +105,7 @@ router.put('/addTaskToTaskTemplate', authenticateHR, function (req, res) {
 									if (!taskTemplate)
 										res.status(400).send({ "status": "Invalid Task Template Id" });
 									else {
-										Log.update(req.admin._id, "Adding task : " + todoTaskId + " to template : " + taskTemplateId);
+										Log.update(req.employee._id, "Adding task : " + todoTaskId + " to template : " + taskTemplateId);
 										res.status(200).send({ "status": "success" });
 									}
 
