@@ -149,7 +149,7 @@ router.get('/getDashInfoEmployee', authenticateHR, function (req, res) {
 				quizzes[j].status = employee.quizzes[j].status
 				quizzes[j].numberOfAttempts = employee.quizzes[j].quiz.numberOfAttempts
 				quizzes[j].attemptsMade = employee.quizzes[j].quiz.attemptNumber
-				quizzes[j].score = employee.quizzes[j].score
+				quizzes[j].score = employee.quizzes[j].quiz.score
 
 			}
 			response.quizzes = quizzes
