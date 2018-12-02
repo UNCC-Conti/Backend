@@ -58,9 +58,9 @@ router.put('/addTaskToTaskTemplate', authenticateHR, function (req, res) {
 	var d = new Date(); 
 	console.log("" + d + "\tExecuting API : Add task to task template");
 
-	var _id = req.body.taskTemplateId;
+	var taskTemplateId = req.body.taskTemplateId;
 	var todoTaskId = req.body.taskId;
-	if (!_id)
+	if (!taskTemplateId)
 		res.status(400).send({ 'status': 'Invalid Task Template Id' });
 
 
@@ -80,7 +80,7 @@ router.put('/addTaskToTaskTemplate', authenticateHR, function (req, res) {
 				"active": "true"
 			};
 
-			TaskTemplate.findByIdAndUpdate(_id,
+			TaskTemplate.findByIdAndUpdate(taskTemplateId,
 				{ $push: { "todoTasks": body}},  
 				{ new: true },
 				function (err, model) {
@@ -105,7 +105,7 @@ router.put('/addTaskToTaskTemplate', authenticateHR, function (req, res) {
 									if (!taskTemplate)
 										res.status(400).send({ "status": "Invalid Task Template Id" });
 									else {
-										Log.update(req.admin._id, "Adding task : " + todoTaskId + " to template : " + _id);
+										Log.update(req.admin._id, "Adding task : " + todoTaskId + " to template : " + taskTemplateId);
 										res.status(200).send({ "status": "success" });
 									}
 
