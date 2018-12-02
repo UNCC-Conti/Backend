@@ -145,8 +145,8 @@ router.get('/getDashInfoEmployee', authenticateHR, function (req, res) {
 			for(var j = 0; j < employee.quizzes.length; j++){
 
 				var totalScore = 0
-				for(var i = 0; i < employee.quizzes[j].questions.length; i++){
-					totalScore = totalScore + employee.quizzes[j].questions[i].question.points
+				for(var i = 0; i < employee.quizzes[j].quiz.questions.length; i++){
+					totalScore = totalScore + employee.quizzes[j].quiz.questions[i].question.points
 				}
 				quizzes.push({}) 
 				quizzes[j].title = employee.quizzes[j].quiz.quizName
