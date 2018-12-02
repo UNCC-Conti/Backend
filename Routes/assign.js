@@ -259,7 +259,7 @@ router.put('/assignQuizTemplate', authenticateHR, function (req, res) {
 						"rewardPoints": quiz.rewardPoints,
 						"color": '#696969',
 						"duration": quiz.duration,
-						"url": 'N/A',
+						"url": quiz.referenceDocId,
 						"type": 'Quiz',
 						"isComplete" : 'Incomplete',
 						"priority": 1,
