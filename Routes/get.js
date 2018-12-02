@@ -92,7 +92,7 @@ router.get('/dashInfo', authenticateHR, function (req, res) {
     })
 })
 
-router.get('/getDashInfoEmployee', authenticateHR, function (req, res) {
+router.get('/employeeDashInfo', authenticateHR, function (req, res) {
 
     // var id = req.header('employeeId');
 
