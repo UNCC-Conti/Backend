@@ -214,11 +214,19 @@ router.post('/taskTemplate', authenticateHR, function (req, res) {
 	console.log('' + d + '\tExecuting API : Create Task Template')
     Log.updateLog(req.employee._id,'Creating a new task template.')
 
-	var body = _.pick(req.body, ['templateName', 'createdBy', 'createdUserRole', 'templateDescription',
-								'assignedRoleId', 'assignedDepartmentId'])
+	var templateBody = {
+	  'templateName': req.body.templateName,
+      'templateDescription': req.body.templateDescription,
+      'createdBy': req.employee.firstName + ' ' + req.employee.lastName,
+      'createdUserRole': 'HRBP',
+      'duration': req.body.duration,
+      'active': req.body.active,
+      'assignedRoleId': req.body.assignedRoleId,
+      'assignedDepartment': req.body.assignedDepartment,
+      'tags': req.body.tags,
+	}
 
-
-	var taskTemplate = new TaskTemplate(body)
+	var taskTemplate = new TaskTemplate(templateBody)
 
 	taskTemplate.save().then((doc) => {
 		res.status(201).send({'result':'Successfully created task template', 'taskTemplate':doc})

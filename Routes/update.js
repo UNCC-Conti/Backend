@@ -47,11 +47,79 @@ var { Log } = require('./../models/logModel');
     API name: /taskTemplate
     this api will get a old expired token and will return a new updated token in response
 */
-
+	
 /* TODO: 
     API name: /addTaskToTaskTemplate
     this api will get a old expired token and will return a new updated token in response
 */
+// API to assign a task to a task Template
+router.put('/addTaskToTaskTemplate', authenticateHR, function (req, res) { 
+
+	var d = new Date(); 
+	console.log("" + d + "\tExecuting API : Add task to task template");
+
+	var _id = req.body.taskTemplateId;
+	var todoTaskId = req.body.taskId;
+	if (!_id)
+		res.status(400).send({ 'status': 'Invalid Task Template Id' });
+
+
+	Todo.findById(todoTaskId, function (err, task) {
+
+		if (err) {
+			res.status(400).send(err);
+		}
+		if (!todo) {
+
+			res.status(400).send({ 'status': 'Invalid Task Id' });
+		}
+		else {
+
+			var body = {
+				"task": task,
+				"active": "true"
+			};
+
+			TaskTemplate.findByIdAndUpdate(_id,
+				{ $push: { "todoTasks": body}},  
+				{ new: true },
+				function (err, model) {
+					if (err) {
+						res.status(400).send(err);
+					}
+					else {
+						if (!model)
+							res.send({ "status": "Invalid Task Template Id" });
+						else {
+						//	model.duration = model.duration + model.todoTasks[model.todoTasks.length].task.duration;
+							//console.log("duration of the todo task is now : " + model);
+							//console.log("time to add + " + body.task.duration);
+						
+							var currentDuration = parseInt(model.duration);
+
+							TaskTemplate.findByIdAndUpdate(_id, 
+								{ $set: { "duration": currentDuration + parseInt(body.task.duration)}},
+								
+								function (err, taskTemplate) {
+
+									if (!taskTemplate)
+										res.status(400).send({ "status": "Invalid Task Template Id" });
+									else {
+										Log.update(req.admin._id, "Adding task : " + todoTaskId + " to template : " + _id);
+										res.status(200).send({ "status": "success" });
+									}
+
+							});				
+							
+
+						}
+					}
+
+				});
+		}
+
+	});
+})
 
 /* TODO: 
     API name: /quizQuestion
