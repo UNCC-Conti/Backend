@@ -97,7 +97,7 @@ router.put('/addTaskToTaskTemplate', authenticateHR, function (req, res) {
 						
 							var currentDuration = parseInt(model.duration);
 
-							TaskTemplate.findByIdAndUpdate(_id, 
+							TaskTemplate.findByIdAndUpdate(taskTemplateId, 
 								{ $set: { "duration": currentDuration + parseInt(body.task.duration)}},
 								
 								function (err, taskTemplate) {
