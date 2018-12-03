@@ -63,7 +63,7 @@ router.post('/taskTemplate', authenticateHR, function (req, res) {
 
 })
 	
-router.post('/taskTemplate', authenticateHR, function (req, res) {
+router.post('/copyTaskTemplate', authenticateHR, function (req, res) {
 
 	var d = new Date()
 	console.log('' + d + '\tExecuting API : Create Task Template')
