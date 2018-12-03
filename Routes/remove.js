@@ -41,4 +41,26 @@ router.delete('/employee', function (req, res) {
 	});
 });
 
+router.delete('/unassignTask', function (req, res) {
+
+	var d = new Date(); 	
+	console.log("" + d + "\tExecuting API : unassignTask");
+
+	var id = req.body.employeeId;
+	var taskId = req.body.taskId;
+
+	Employee.findOne({'_id' : id}, function (err, employee) {
+
+		for(var i = 0; i < employee.tasks.length; i++){
+			if(taskId == employee.tasks[i]._id){
+				employee.tasks.splice(i, 1);
+			}
+		}
+
+		employee.save(employee).then(() => { //changed this part
+			res.status(200).send({ 'status': 'Success' });
+		});
+	});
+});
+
 module.exports = router;
