@@ -58,7 +58,18 @@ router.post('/taskTemplate', authenticateHR, function (req, res) {
 	TaskTemplate.update(
 		{ _id : taskTemplate._id }, 
 		{
-			'$set': { 'templateName' : ''}
+			'$set': { 'templateName' : taskTemplate.templateName,
+			'templateDescription' : taskTemplate.templateDescription,
+			'createdBy' : taskTemplate.createdBy,
+			'createdUserRole' : taskTemplate.createdUserRole,
+			'assignedRoleId' : taskTemplate.assignedRoleId,
+			'tags' : taskTemplate.tags,
+			'todoTasks' : taskTemplate.todoTasks,
+			'assignedDepartment' : taskTemplate.assignedDepartment,
+			'active' : taskTemplate.active,
+			'duration' : taskTemplate.duration,
+			
+					}
 		}
 		).then((doc) => {
 		res.status(201).send({'result':'Successfully updated task template', 'taskTemplate':doc})
