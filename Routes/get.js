@@ -138,7 +138,11 @@ router.get('/employeeDashInfo', authenticateHR, function (req, res) {
 			console.log(JSON.stringify(response))
 			response.completedTasks = doneTasks
 			response.overDueTasks = overDueTasks
-			response.progress = doneTasks*100.0/employee.tasks.length
+			if(employee.tasks.length == 0){
+				response.progress = 100
+			}else{
+				response.progress = doneTasks*100.0/employee.tasks.length
+			}
 			response.tasks = tasks
 
 			var quizzes = []
