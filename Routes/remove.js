@@ -44,7 +44,7 @@ router.delete('/employee', function (req, res) {
 	});
 });
 
-router.delete('/unassignTask', authenticateHR, function (req, res) {
+router.put('/unassignTask', authenticateHR, function (req, res) {
 
 	var d = new Date(); 	
 	console.log("" + d + "\tExecuting API : unassignTask");
