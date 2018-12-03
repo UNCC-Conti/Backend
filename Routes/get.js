@@ -324,7 +324,7 @@ router.get('/taskTemplate', authenticateHR, function (req, res) {
 
 	var d = new Date()
 	console.log("" + d + "\tExecuting API: List question bank")
-	var id = req.param("taskTemplateId")
+	var id = req.header("taskTemplateId")
 
 	TaskTemplate.find({"_id":id}).then((taskTemplate) => {
 		res.status(200).send({taskTemplate})
