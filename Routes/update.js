@@ -47,7 +47,40 @@ var { Log } = require('./../models/logModel');
     API name: /taskTemplate
     this api will get a old expired token and will return a new updated token in response
 */
+router.post('/taskTemplate', authenticateHR, function (req, res) {
+
+	var d = new Date()
+	console.log('' + d + '\tExecuting API : Create Task Template')
+    Log.updateLog(req.employee._id,'Creating a new task template.')
+
+	var taskTemplate = req.body.taskTemplate
+
+	taskTemplate.update(taskTemplate).then((doc) => {
+		res.status(201).send({'result':'Successfully updated task template', 'taskTemplate':doc})
+	}, (e) => {
+		res.status(400).send({'status':'Error Creating the todo', 'Error': e})
+	})
+
+})
 	
+router.post('/taskTemplate', authenticateHR, function (req, res) {
+
+	var d = new Date()
+	console.log('' + d + '\tExecuting API : Create Task Template')
+    Log.updateLog(req.employee._id,'Creating a new task template.')
+
+	var templateBody = req.body.taskTemplate
+	templateBody.templateName = 'copy of' + req.body.taskTemplate.templateName
+
+	var taskTemplate = new TaskTemplate(templateBody)
+
+	taskTemplate.save().then((doc) => {
+		res.status(201).send({'result':'Successfully updated task template', 'taskTemplate':doc})
+	}, (e) => {
+		res.status(400).send({'status':'Error Creating the todo', 'Error': e})
+	})
+
+})
 /* TODO: 
     API name: /addTaskToTaskTemplate
     this api will get a old expired token and will return a new updated token in response
