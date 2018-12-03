@@ -59,16 +59,15 @@ router.post('/taskTemplate', authenticateHR, function (req, res) {
 		{ _id : taskTemplate._id }, 
 		{
 			'$set': { 'templateName' : taskTemplate.templateName,
-			'templateDescription' : taskTemplate.templateDescription,
-			'createdBy' : taskTemplate.createdBy,
-			'createdUserRole' : taskTemplate.createdUserRole,
-			'assignedRoleId' : taskTemplate.assignedRoleId,
-			'tags' : taskTemplate.tags,
-			'todoTasks' : taskTemplate.todoTasks,
-			'assignedDepartment' : taskTemplate.assignedDepartment,
-			'active' : taskTemplate.active,
-			'duration' : taskTemplate.duration,
-			
+						'templateDescription' : taskTemplate.templateDescription,
+						'createdBy' : taskTemplate.createdBy,
+						'createdUserRole' : taskTemplate.createdUserRole,
+						'assignedRoleId' : taskTemplate.assignedRoleId,
+						'tags' : taskTemplate.tags,
+						'todoTasks' : taskTemplate.todoTasks,
+						'assignedDepartment' : taskTemplate.assignedDepartment,
+						'active' : taskTemplate.active,
+						'duration' : taskTemplate.duration
 					}
 		}
 		).then((doc) => {
