@@ -55,7 +55,12 @@ router.post('/taskTemplate', authenticateHR, function (req, res) {
 
 	var taskTemplate = req.body.taskTemplate
 
-	TaskTemplate.save(taskTemplate).then((doc) => {
+	TaskTemplate.update(
+		{ _id : taskTemplate._id }, 
+		{
+			'$set': { 'templateName' : ''}
+		}
+		).then((doc) => {
 		res.status(201).send({'result':'Successfully updated task template', 'taskTemplate':doc})
 	}, (e) => {
 		res.status(400).send({'status':'Error Creating the todo', 'Error': e})
@@ -70,6 +75,8 @@ router.post('/copyTaskTemplate', authenticateHR, function (req, res) {
     Log.updateLog(req.employee._id,'Creating a new task template.')
 
 	var templateBody = req.body.taskTemplate
+	delete templateBody['_id']
+	delete templateBody['__v']
 	templateBody.templateName = 'copy of' + req.body.taskTemplate.templateName
 
 	var taskTemplate = new TaskTemplate(templateBody)
