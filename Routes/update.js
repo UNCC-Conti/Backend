@@ -55,7 +55,7 @@ router.post('/taskTemplate', authenticateHR, function (req, res) {
 
 	var taskTemplate = req.body.taskTemplate
 
-	TaskTemplate.update(taskTemplate).then((doc) => {
+	TaskTemplate.save(taskTemplate).then((doc) => {
 		res.status(201).send({'result':'Successfully updated task template', 'taskTemplate':doc})
 	}, (e) => {
 		res.status(400).send({'status':'Error Creating the todo', 'Error': e})
