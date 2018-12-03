@@ -54,6 +54,9 @@ router.delete('/unassignTask', authenticateHR, function (req, res) {
 
 	Employee.findOne({'_id' : id}, function (err, employee) {
 
+
+		console.log("employee : " + JSON.stringify(employee))
+
 		for(var i = 0; i < employee.tasks.length; i++){
 			if(taskId == employee.tasks[i]._id){
 				employee.tasks.splice(i, 1);
