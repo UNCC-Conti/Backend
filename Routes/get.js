@@ -312,7 +312,7 @@ router.get('/taskTemplates', authenticateHR, function (req, res) {
 	var d = new Date()
 	console.log("" + d + "\tExecuting API: List question bank")
 
-	TaskTemplate.find({},{todoTasks: 0}).then((taskTemplates) => {
+	TaskTemplate.find({},{}).then((taskTemplates) => {
 		res.status(200).send({taskTemplates})
 	}, (e) => {
 		res.status(400).send({'status': 'Error getting all the task templates', 'Error': e})
