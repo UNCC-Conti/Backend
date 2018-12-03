@@ -51,7 +51,8 @@ router.delete('/unassignTask', authenticateHR, function (req, res) {
 
 	var id = req.body.employeeId;
 	var taskId = req.body.taskId;
-
+	console.log("id : " + id)
+	
 	Employee.findOne({'_id' : id}, function (err, employee) {
 
 
