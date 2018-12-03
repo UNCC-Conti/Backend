@@ -6,6 +6,9 @@ const { mongoose } = require('./../dbConfig/mongoose');
 var { Employee } = require('./../models/employeeModel');
 var { Log } = require('./../models/logModel');
 
+var { authenticateHR } = require('./../middleware/authenticationHR');
+
+
 router.get("/",function(req,res){
 	res.send("Devansh Test!");
 });
@@ -41,7 +44,7 @@ router.delete('/employee', function (req, res) {
 	});
 });
 
-router.delete('/unassignTask', function (req, res) {
+router.delete('/unassignTask', authenticateHR, function (req, res) {
 
 	var d = new Date(); 	
 	console.log("" + d + "\tExecuting API : unassignTask");
