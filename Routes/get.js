@@ -354,7 +354,7 @@ router.get('/employeeTasks', authenticateHR, function (req, res) {
 
 	var d = new Date()
 	console.log("" + d + "\tExecuting API: List assigned task of the user")
-    var id = req.param("empId")
+    var id = req.header("empId")
 	console.log("empid = " + id)
     Employee.find({"_id":id}, {tasks:1, _id:0}).then((tasks) => {
 

@@ -82,20 +82,34 @@ router.post('/copyTaskTemplate', authenticateHR, function (req, res) {
 
 	var d = new Date()
 	console.log('' + d + '\tExecuting API : Create Task Template')
-    Log.updateLog(req.employee._id,'Creating a new task template.')
+    Log.updateLog(req.employee._id,'Copying a new task template.')
 
-	var templateBody = req.body.taskTemplate
-	delete templateBody['_id']
-	delete templateBody['__v']
-	templateBody.templateName = 'copy of' + req.body.taskTemplate.templateName
+	var id = req.header("taskTemplateId")
 
-	var taskTemplate = new TaskTemplate(templateBody)
+	TaskTemplate.find({"_id":id}).then((template) => {
 
-	taskTemplate.save().then((doc) => {
-		res.status(201).send({'result':'Successfully updated task template', 'taskTemplate':doc})
+
+		var templateBody = template
+		delete templateBody['_id']
+		delete templateBody['__v']
+		templateBody.templateName = 'copy of' + req.body.taskTemplate.templateName
+	
+		var taskTemplate = new TaskTemplate(templateBody)
+	
+		taskTemplate.save().then((doc) => {
+			res.status(201).send({'result':'Successfully updated task template', 'taskTemplate':doc})
+		}, (e) => {
+			res.status(400).send({'status':'Error Creating the todo', 'Error': e})
+		})
+	
+
+
 	}, (e) => {
-		res.status(400).send({'status':'Error Creating the todo', 'Error': e})
+		res.status(400).send({'status': 'Error getting all the task templates', 'Error': e})
+
 	})
+
+
 
 })
 /* TODO: 
