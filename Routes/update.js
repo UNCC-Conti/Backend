@@ -92,7 +92,7 @@ router.post('/copyTaskTemplate', authenticateHR, function (req, res) {
 		var templateBody = template
 		delete templateBody['_id']
 		delete templateBody['__v']
-		templateBody.templateName = 'copy of' + req.body.taskTemplate.templateName
+		templateBody.templateName = 'copy of' + templateBody.templateName
 	
 		var taskTemplate = new TaskTemplate(templateBody)
 	
