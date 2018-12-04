@@ -68,7 +68,8 @@ router.put('/task', authenticateHR, function (req, res) {
 				"location":"Any",
 				"division":"Any",
 				"department":"Any",
-				"inputs" : task.inputs
+				"inputs" : task.inputs,
+				"assignedBy" : req.employee._id
 				
 			};
 

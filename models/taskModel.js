@@ -14,6 +14,9 @@ var taskSchema = new mongoose.Schema({
         minlength : 1,
         trim : true
     },
+    assignedBy : {
+        type : String
+    },
 
     // TODO: Add "Initiator" and "Report to" (array if multiple people)
     //       Status (may include initiation date, last update)
