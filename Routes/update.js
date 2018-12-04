@@ -88,6 +88,7 @@ router.post('/copyTaskTemplate', authenticateHR, function (req, res) {
 
 	TaskTemplate.find({"_id":id}).then((template) => {
 
+		console.log(JSON.stringify(template))
 
 		var templateBody = template
 		delete templateBody['_id']
