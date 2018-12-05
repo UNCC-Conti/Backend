@@ -82,7 +82,7 @@ router.get('/dashInfo', authenticateHR, function (req, res) {
 				if(employees[i].tasks.length != 0)
 					response[i].progress = completedTasks*100.0/employees[i].tasks.length
 				else{
-					response[i].progress = 100
+					response[i].progress = -1
 				}
 			}
 	
@@ -139,7 +139,7 @@ router.get('/employeeDashInfo', authenticateHR, function (req, res) {
 			response.completedTasks = doneTasks
 			response.overDueTasks = overDueTasks
 			if(employee.tasks.length == 0){
-				response.progress = 100
+				response.progress = -1
 			}else{
 				response.progress = doneTasks*100.0/employee.tasks.length
 			}
