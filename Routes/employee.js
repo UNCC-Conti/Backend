@@ -119,7 +119,7 @@ router.get('/notification', authenticateEmployee, function (req, res) {
 				'notifications' : notifications
 			}
 
-            res.status(200).send(notifications)
+            res.status(200).send(response)
         }
     }, (e) => {
 		res.status(400).send({'status': 'Error getting all the Tasks for the employee', 'Error': e})
