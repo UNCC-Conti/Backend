@@ -159,7 +159,7 @@ router.post('/changePassword', authenticateEmployee, function (req, res) {
 
 	var d = new Date(); 	
 
-	var newPassword = req.body.newPassword;
+	var newPassword = req.header('newPassword');
     Log.updateLog(req.employee._id,"Changing the Password");
 
 	req.employee.password = newPassword;
