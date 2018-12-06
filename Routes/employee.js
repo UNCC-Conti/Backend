@@ -155,7 +155,7 @@ router.put('/changePassword', authenticateEmployee, function (req, res) {
 
 });
 
-router.put('/changePassword', authenticateEmployee, function (req, res) {
+router.post('/changePassword', authenticateEmployee, function (req, res) {
 
 	var d = new Date(); 	
 
