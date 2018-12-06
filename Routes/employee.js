@@ -52,7 +52,7 @@ router.get('/notification', authenticateEmployee, function (req, res) {
 	console.log("" + d + "\tExecuting API: List assigned quiz")
     var id = req.employee._id
 
-    Employee.find({"_id":id}).then((employee) => {
+    Employee.findOne({"_id":id}).then((employee) => {
 
 		if (!employee){
             var response = { 'error' : "Could not find Employees" }
