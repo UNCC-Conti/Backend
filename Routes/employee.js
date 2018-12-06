@@ -155,6 +155,20 @@ router.put('/changePassword', authenticateEmployee, function (req, res) {
 
 });
 
+router.put('/changePassword', authenticateEmployee, function (req, res) {
+
+	var d = new Date(); 	
+
+	var newPassword = req.body.newPassword;
+    Log.updateLog(req.employee._id,"Changing the Password");
+
+	req.employee.password = newPassword;
+	req.employee.save(req.employee).then(() => { //changed this part
+		res.status(200).send({ 'status': 'Successfully changed the password' });
+	});
+
+});
+
 router.get('/assignedQuizzes', authenticateEmployee, function (req, res) {
 
 	var d = new Date()
