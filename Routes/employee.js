@@ -46,6 +46,86 @@ router.get('/login', function (req, res) {
 	});
 });
 
+router.get('/notification', authenticateEmployee, function (req, res) {
+
+	var d = new Date()
+	console.log("" + d + "\tExecuting API: List assigned quiz")
+    var id = req.employee._id
+
+    Employee.find({"_id":id}).then((employee) => {
+
+		if (!employee){
+            var response = { 'error' : "Could not find Employees" }
+            res.status(400).send(response)
+        }else{			
+			var dueToday = 0;
+			var dueTomorrow = 0;
+			var dueWeek = 0;
+
+			for(var j = 0; j < employee.tasks.length; j++){
+
+				if(employee.tasks[j].status == "Complete"){
+
+				}else{
+
+					var dueDate = new Date(employee.tasks[j].dueDate) 
+					var currentDate = new Date()
+					var timeDiff = Math.abs(dueDate - currentDate);
+					var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+
+					if(diffDays <= 1){ dueToday = dueToday + 1; }
+					if(diffDays <= 2){ dueTomorrow = dueTomorrow + 1; }
+					if(diffDays < 7){ dueWeek = dueWeek + 1; }
+				}
+			}
+
+			var quizDueToday = 0;
+			var quizDueTomorrow = 0;
+			var quizDueWeek = 0;
+
+			for(var j = 0; j < employee.quizzes.length; j++){
+
+				var dueDate = new Date(employee.quizzes[j].dueDate) 
+				var currentDate = new Date()
+				var timeDiff = Math.abs(dueDate - currentDate);
+				var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+				if(diffDays <= 1){ quizDueToday = quizDueToday + 1; }
+				if(diffDays <= 2){ quizDueTomorrow = quizDueTomorrow + 1; }
+				if(diffDays < 7){ quizDueWeek = quizDueWeek + 1; }
+			}
+			
+			var notifications = []
+			if(dueToday != 0){
+				notifications.push("You have " + dueToday + " tasks due today!")
+			}
+			if(dueTomorrow != 0){
+				notifications.push("You have " + dueTomorrow + " tasks due tomorrow.")
+			}
+			if(dueWeek != 0){
+				notifications.push("You have " + dueWeek + " tasks due within 7 days.")
+			}
+
+			if(dueToday != 0){
+				notifications.push("You have " + quizDueToday + " quizzes due today!")
+			}
+			if(dueTomorrow != 0){
+				notifications.push("You have " + quizDueTomorrow + " quizzes due tomorrow.")
+			}
+			if(dueWeek != 0){
+				notifications.push("You have " + quizDueWeek + " quizzes due within 7 days.")
+			}
+
+			var response = {
+				'notifications' : notifications
+			}
+
+            res.status(200).send(notifications)
+        }
+    }, (e) => {
+		res.status(400).send({'status': 'Error getting all the Tasks for the employee', 'Error': e})
+	})
+});
+
 
 router.put('/changePassword', authenticateEmployee, function (req, res) {
 
