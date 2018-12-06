@@ -200,7 +200,8 @@ router.get('/listEmployees', authentication, function (req, res) {
                         response[i].firstName = employees[i].firstName
                         response[i].lastName = employees[i].lastName
                         response[i].email = employees[i].email
-                        response[i].workPhone = employees[i].workPhone
+						response[i].workPhone = employees[i].workPhone
+						response[i].employeeId = employees[i].employeeId
                     }
             }
             res.status(200).send(response)
