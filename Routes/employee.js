@@ -105,13 +105,13 @@ router.get('/notification', authenticateEmployee, function (req, res) {
 				notifications.push("You have " + dueWeek + " tasks due within 7 days.")
 			}
 
-			if(dueToday != 0){
+			if(quizDueToday != 0){
 				notifications.push("You have " + quizDueToday + " quizzes due today!")
 			}
-			if(dueTomorrow != 0){
+			if(quizDueTomorrow != 0){
 				notifications.push("You have " + quizDueTomorrow + " quizzes due tomorrow.")
 			}
-			if(dueWeek != 0){
+			if(quizDueWeek != 0){
 				notifications.push("You have " + quizDueWeek + " quizzes due within 7 days.")
 			}
 
